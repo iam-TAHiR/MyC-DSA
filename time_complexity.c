@@ -3,7 +3,7 @@
 #include <time.h>
 
 int main() {
-    long n = 100000000; 
+    long n = 10000000; 
     long sum = 0;
     clock_t start, end;
     double time_taken;
