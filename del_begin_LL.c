@@ -26,7 +26,7 @@ void insertend(int val)
     }
     
 }
-void delend()
+void delbegin()
 {
     if(head==NULL)
     {
@@ -55,6 +55,6 @@ int main()
     insertend(30);
     insertend(40);
     display();
-    delend();
+    delbegin();
     display();
 }
