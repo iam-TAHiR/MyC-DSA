@@ -1,85 +1,42 @@
-#include <stdio.h>
-#define SIZE 5
+#include<stdio.h>
+#define max 5
 
-int queue[SIZE];
-int front = -1, rear = -1;
-
-void enqueue(int value) {
-    if (rear == SIZE - 1)
-        printf("Queue is Full\n");
-    else {
-        if (front == -1)
-            front = 0;
-        rear++;
-        queue[rear] = value;
-        printf("%d inserted\n", value);
+int q[max];
+int f=-1,r=-1;
+void enq(int v){
+    if(r==max-1)
+        printf("Queue full\n");
+    else{
+        if(f==-1) f=0;
+        r++;
+        q[r]=v;
     }
 }
-
-void dequeue() {
-    if (front == -1 || front > rear)
-        printf("Queue is Empty\n");
-    else {
-        printf("%d deleted\n", queue[front]);
-        front++;
+void dq(){
+    if(f==-1)
+        printf("Queue empty\n");
+    else{
+        printf("%d deleted\n",q[f]);
+        for(int i=f+1;i<=r;i++)
+             q[i-1]=q[i];
+        r--;
     }
 }
-
-void peek() {
-    if (front == -1 || front > rear)
-        printf("Queue is Empty\n");
-    else
-        printf("Front element = %d\n", queue[front]);
-}
-
-void display() {
-    if (front == -1 || front > rear)
-        printf("Queue is Empty\n");
-    else {
-        printf("Queue elements: ");
-        for (int i = front; i <= rear; i++)
-            printf("%d ", queue[i]);
+void display(){
+    printf("The queue elements\n");
+    for(int i=f;i<=r;i++)
+        printf("%d ",q[i]);
         printf("\n");
-    }
 }
-
-int main() {
-    int choice, value;
-    printf("Queue Operations using Array\n");
-    printf("--------------------------------\n");
-
-    while (1) {
-        printf("\n1. Enqueue\n2. Dequeue\n3. Peek\n4. Display\n5. Exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
-
-        switch (choice) {
-            case 1:
-                printf("Enter value to insert: ");
-                scanf("%d", &value);
-                enqueue(value);
-                break;
-
-            case 2:
-                dequeue();
-                break;
-
-            case 3:
-                peek();
-                break;
-
-            case 4:
-                display();
-                break;
-
-            case 5:
-                printf("Exiting...\n");
-                return 0;
-
-            default:
-                printf("Invalid choice! Please try again.\n");
-        }
-    }
-
-return 0;
+int main(){
+    enq(10);
+    enq(20);
+    enq(30);
+    enq(40);
+    enq(50);
+    display();
+    enq(30);
+    dq();
+   enq(90);
+   display();
 }
