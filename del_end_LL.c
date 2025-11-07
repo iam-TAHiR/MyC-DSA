@@ -97,13 +97,16 @@ void delend()
         return;
     }
     struct node* temp=head;
-    while(temp->next->next!=NULL)
+    struct node* prev=temp;
+    while(temp->next!=NULL)
     {
+        prev=temp;
         temp=temp->next;
     }
-    printf("deleted element %d\n",temp->next->data);
-       free(temp->next);
-       temp->next=NULL;
+    printf("deleted element %d\n",temp->data);
+       prev->next=NULL;
+       free(temp);
+       
 }
 int main()
 {
